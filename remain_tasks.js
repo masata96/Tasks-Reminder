@@ -1,13 +1,4 @@
-﻿/*********************************
- * Notion -> LINE: 本日の残タスク通知
- *********************************/
-
-/**
- * 元の関数名を踏襲: getTodayIncompleteTasks()
- * Notion から「状態 = 本日中対応」かつ「チェック = false」のタスクを取得して
- * カテゴリ別に整形し、LINE に Push で通知します。
- */
-function getTodayIncompleteTasks() {
+﻿function getTodayIncompleteTasks() {
   try {
     // Notion API query（ページネーション対応）
     const url = 'https://api.notion.com/v1/databases/' + DATABASE_ID + '/query';

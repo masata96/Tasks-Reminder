@@ -270,7 +270,7 @@ function safeReply(replyToken, message) {
   }
 }
 
-// ------------------ 署名検証（GAS内） ------------------
+// ------------------ 署名検証 ------------------
 function getHeaderCaseInsensitive(e, headerName) {
   try {
     if (e && e.postData && e.postData.headers) {

@@ -14,7 +14,7 @@ function remind_every_morning() {
     }
 
       const todayTasks = [];
-    // スクリプト（GAS）で使うタイムゾーン（ユーザ別タイムゾーンを使うなら別実装）
+    // スクリプト（GAS）で使うタイムゾーン
     const tz = Session.getScriptTimeZone ? Session.getScriptTimeZone() : 'UTC';
     const todayStr = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd');
 
@@ -32,13 +32,11 @@ function remind_every_morning() {
       if (/^\d{4}-\d{2}-\d{2}$/.test(start)) {
         taskDateStr = start;
       } else {
-        // 時刻付き ISO の場合は、スクリプトのタイムゾーンで yyyy-MM-dd に変換して比較
         const d = new Date(start);
         if (isNaN(d.getTime())) return; // 予期しない形式ならスキップ
         taskDateStr = Utilities.formatDate(d, tz, 'yyyy-MM-dd');
       }
 
-      // 今日と**完全一致**なら通知対象（<= ではなく === が重要）
       if (taskDateStr <= todayStr) {
         try {
           updateTaskStatus(page.id, '本日中対応');
